@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Customer;
+use App\Models\Product;
+use App\User;
 use Eloquent as Model;
 
 /**
@@ -13,7 +16,7 @@ class CargoLetter extends Model
 {
 
     public $table = 'cargo_letters';
-    
+
 
 
     public $fillable = [
@@ -43,5 +46,20 @@ class CargoLetter extends Model
         'customer_id' => 'required|integer'
     ];
 
-    
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
 }

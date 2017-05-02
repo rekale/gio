@@ -30,7 +30,8 @@ class CargoLetterController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->cargoLetterRepository->pushCriteria(new RequestCriteria($request));
+        $this->cargoLetterRepository->with('customer', 'user')
+                                    ->pushCriteria(new RequestCriteria($request));
 
         $cargoLetters = $this->cargoLetterRepository->paginate(15);
 
@@ -60,6 +61,7 @@ class CargoLetterController extends AppBaseController
     public function store(CreateCargoLetterRequest $request)
     {
         $input = $request->all();
+        $input['user_id'] = $request->user()->id;
 
         $cargoLetter = $this->cargoLetterRepository->create($input);
 
@@ -95,7 +97,7 @@ class CargoLetterController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, CustomerRepository $customerRepo)
     {
         $cargoLetter = $this->cargoLetterRepository->findWithoutFail($id);
 
@@ -105,7 +107,9 @@ class CargoLetterController extends AppBaseController
             return redirect(route('admin.cargoLetters.index'));
         }
 
-        return view('admin.cargo_letters.edit')->with('cargoLetter', $cargoLetter);
+        $customers = $customerRepo->all();
+
+        return view('admin.cargo_letters.edit', compact('cargoLetter', 'customers'));
     }
 
     /**

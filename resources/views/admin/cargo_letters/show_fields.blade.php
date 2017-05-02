@@ -12,14 +12,14 @@
 
 <!-- Customer Id Field -->
 <div class="form-group">
-    {!! Form::label('customer_id', 'Customer Id:') !!}
-    <p>{!! $cargoLetter->customer_id !!}</p>
+    {!! Form::label('customer', 'Customer:') !!}
+    <p>{!! $cargoLetter->customer->name !!}</p>
 </div>
 
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $cargoLetter->user_id !!}</p>
+    {!! Form::label('user', 'Author:') !!}
+    <p>{!! $cargoLetter->user->name!!}</p>
 </div>
 
 <!-- Created At Field -->
