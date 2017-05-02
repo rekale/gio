@@ -39,4 +39,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController');
     Route::resource('customers', 'CustomerController');
+    Route::resource('cargoLetters', 'CargoLetterController');
 });
