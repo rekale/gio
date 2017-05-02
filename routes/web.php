@@ -37,4 +37,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::get('home', 'HomeController@index');
 
     Route::resource('categories', 'CategoryController');
+    Route::resource('products', 'ProductController');
 });

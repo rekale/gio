@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Criteria\LatestCriteria;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -29,7 +30,9 @@ class CategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->categoryRepository->pushCriteria(new RequestCriteria($request));
+        $this->categoryRepository->pushCriteria(new RequestCriteria($request))
+                                ->pushCriteria(LatestCriteria::class);
+
         $categories = $this->categoryRepository->paginate(15);
 
         return view('admin.categories.index')
