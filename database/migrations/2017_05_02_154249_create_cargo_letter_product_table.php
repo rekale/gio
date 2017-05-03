@@ -17,7 +17,7 @@ class CreateCargoLetterProductTable extends Migration
             $table->integer('cargo_letter_id')->unsigned()->index();
             $table->integer('product_id')->unsigned();
             $table->integer('quantity')->unsigned();
-            $table->string('note');
+            $table->string('note')->nullable();
         });
     }
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Criteria\LatestCriteria;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateCargoLetterRequest;
 use App\Http\Requests\UpdateCargoLetterRequest;
 use App\Repositories\CargoLetterRepository;
 use App\Repositories\CustomerRepository;
+use App\Repositories\ProductRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -31,7 +33,8 @@ class CargoLetterController extends AppBaseController
     public function index(Request $request)
     {
         $this->cargoLetterRepository->with('customer', 'user')
-                                    ->pushCriteria(new RequestCriteria($request));
+                                    ->pushCriteria(new RequestCriteria($request))
+                                    ->pushCriteria(LatestCriteria::class);
 
         $cargoLetters = $this->cargoLetterRepository->paginate(15);
 
@@ -44,11 +47,12 @@ class CargoLetterController extends AppBaseController
      *
      * @return Response
      */
-    public function create(CustomerRepository $customerRepo)
+    public function create(CustomerRepository $customerRepo, ProductRepository $productRepo)
     {
         $customers = $customerRepo->all();
+        $products =  $productRepo->all();
 
-        return view('admin.cargo_letters.create', compact('customers'));
+        return view('admin.cargo_letters.create', compact('customers', 'products'));
     }
 
     /**
@@ -64,6 +68,9 @@ class CargoLetterController extends AppBaseController
         $input['user_id'] = $request->user()->id;
 
         $cargoLetter = $this->cargoLetterRepository->create($input);
+        $dataProducts = $this->createProduct($input);
+
+        $cargoLetter->products()->attach($dataProducts);
 
         Flash::success('Cargo Letter saved successfully.');
 
@@ -97,7 +104,7 @@ class CargoLetterController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id, CustomerRepository $customerRepo)
+    public function edit($id, CustomerRepository $customerRepo, ProductRepository $productRepo)
     {
         $cargoLetter = $this->cargoLetterRepository->findWithoutFail($id);
 
@@ -108,8 +115,9 @@ class CargoLetterController extends AppBaseController
         }
 
         $customers = $customerRepo->all();
+        $products =  $productRepo->all();
 
-        return view('admin.cargo_letters.edit', compact('cargoLetter', 'customers'));
+        return view('admin.cargo_letters.edit', compact('cargoLetter', 'customers', 'products'));
     }
 
     /**
@@ -130,7 +138,12 @@ class CargoLetterController extends AppBaseController
             return redirect(route('admin.cargoLetters.index'));
         }
 
-        $cargoLetter = $this->cargoLetterRepository->update($request->all(), $id);
+        $input = $request->all();
+
+        $cargoLetter = $this->cargoLetterRepository->update($input, $id);
+        $dataProducts = $this->createProduct($input);
+
+        $cargoLetter->products()->sync($dataProducts);
 
         Flash::success('Cargo Letter updated successfully.');
 
@@ -159,5 +172,21 @@ class CargoLetterController extends AppBaseController
         Flash::success('Cargo Letter deleted successfully.');
 
         return redirect(route('admin.cargoLetters.index'));
+    }
+
+    private function createProduct($input)
+    {
+        $dataProducts = [];
+
+        for($i=0; $i < count($input['product_id']); $i++) {
+            if(isset($input['product_id'][$i])) {
+                $dataProducts[$input['product_id'][$i]] = [
+                    'quantity' => $input['quantity'][$i] ?? 0,
+                    'note' => $input['note'][$i],
+                ];
+            }
+        }
+
+        return $dataProducts;
     }
 }
