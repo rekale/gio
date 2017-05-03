@@ -27,10 +27,14 @@ Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 
 Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 
 Route::group(['namespace' => 'Front'], function() {
-    Route::get('/', [
-        'as' => 'home',
-        'uses' => 'HomeController@index',
-    ]);
+    // Route::get('/', [
+    //     'as' => 'home',
+    //     'uses' => 'HomeController@index',
+    // ]);
+
+    Route::get('/', function(){
+        return 'welcome';
+    });
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
