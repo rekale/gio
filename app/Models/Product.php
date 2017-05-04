@@ -23,8 +23,9 @@ class Product extends Model
         'image',
         'weight',
         'price',
+        'unit',
         'detail',
-        'category_id'
+        'category_id',
     ];
 
     /**

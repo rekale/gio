@@ -5,7 +5,7 @@
 </div>
 
 <!-- Image Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-6">
     {!! Form::label('image', 'Image:') !!}
     {!! Form::file('image') !!}
 </div>
@@ -13,9 +13,15 @@
 
 
 <!-- Price Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-6">
     {!! Form::label('price', 'Price:') !!}
     {!! Form::number('price', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- unit Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('unit', 'Unit:') !!}
+    {!! Form::text('unit', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- category Field -->

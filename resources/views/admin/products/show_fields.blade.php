@@ -22,6 +22,12 @@
     <p>{!! $product->weight !!}</p>
 </div>
 
+<!-- unit Field -->
+<div class="form-group">
+    {!! Form::label('unit', 'Unit:') !!}
+    <p>{!! $product->unit !!}</p>
+</div>
+
 <!-- Price Field -->
 <div class="form-group">
     {!! Form::label('price', 'Price:') !!}
