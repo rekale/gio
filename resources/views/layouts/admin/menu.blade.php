@@ -14,3 +14,7 @@
     <a href="{!! route('admin.cargoLetters.index') !!}"><i class="fa fa-edit"></i><span>CargoLetters</span></a>
 </li>
 
+<li class="{{ Request::is('travelDocuments*') ? 'active' : '' }}">
+    <a href="{!! route('admin.travelDocuments.index') !!}"><i class="fa fa-edit"></i><span>TravelDocuments</span></a>
+</li>
+

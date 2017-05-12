@@ -1,0 +1,23 @@
+<!-- Cargo Letter Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('cargo_letter_id', 'Cargo Letter Id:') !!}
+    {!! Form::select('cargo_letter_id', $cargoes, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Arrive At Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('arrive_at', 'Arrive At:') !!}
+    {!! Form::date('arrive_at', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Unloading At Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('unloading_at', 'Unloading At:') !!}
+    {!! Form::date('unloading_at', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('admin.travelDocuments.index') !!}" class="btn btn-default">Cancel</a>
+</div>
