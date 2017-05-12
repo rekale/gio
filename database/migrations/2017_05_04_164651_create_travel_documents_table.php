@@ -15,7 +15,7 @@ class CreateTravelDocumentsTable extends Migration
     {
         Schema::create('travel_documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cargo_letter_id')->unsigned();
+            $table->string('cargo_letter_id', 12);
             $table->string('address');
             $table->dateTime('arrive_at');
             $table->dateTime('unloading_at');

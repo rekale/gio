@@ -1,7 +1,7 @@
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', 'Id:') !!}
-    <p>{!! $customer->id !!}</p>
+    <p>{!! $customer->customer_id !!}</p>
 </div>
 
 <!-- Name Field -->

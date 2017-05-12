@@ -16,10 +16,11 @@ class CargoLetter extends Model
 {
 
     public $table = 'cargo_letters';
-
+    public $incrementing = false;
 
 
     public $fillable = [
+        'id',
         'license_plate',
         'customer_id',
         'user_id'
@@ -32,7 +33,6 @@ class CargoLetter extends Model
      */
     protected $casts = [
         'license_plate' => 'string',
-        'customer_id' => 'integer',
         'user_id' => 'integer'
     ];
 
@@ -43,7 +43,7 @@ class CargoLetter extends Model
      */
     public static $rules = [
         'license_plate' => 'required|max:10',
-        'customer_id' => 'required|integer'
+        'customer_id' => 'required'
     ];
 
 
@@ -59,7 +59,7 @@ class CargoLetter extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
 }

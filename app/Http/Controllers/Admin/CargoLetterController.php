@@ -32,7 +32,7 @@ class CargoLetterController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->cargoLetterRepository->with('customer', 'user')
+        $this->cargoLetterRepository->with(['customer', 'user'])
                                     ->pushCriteria(new RequestCriteria($request))
                                     ->pushCriteria(LatestCriteria::class);
 

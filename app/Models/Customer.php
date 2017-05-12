@@ -13,23 +13,16 @@ class Customer extends Model
 {
 
     public $table = 'customers';
+    public $primaryKey = 'customer_id';
     public $incrementing = false;
 
 
 
     public $fillable = [
-        'id',
+        'customer_id',
         'name'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'name' => 'string'
-    ];
 
     /**
      * Validation rules
@@ -37,7 +30,7 @@ class Customer extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required|unique:customers',
+        'customer_id' => 'required|unique:customers',
         'name' => 'required|max:15'
     ];
 

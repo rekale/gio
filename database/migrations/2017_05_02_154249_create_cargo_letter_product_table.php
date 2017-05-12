@@ -14,10 +14,13 @@ class CreateCargoLetterProductTable extends Migration
     public function up()
     {
         Schema::create('cargo_letter_product', function (Blueprint $table) {
-            $table->integer('cargo_letter_id')->unsigned()->index();
+            $table->string('cargo_letter_id', 12)->index();
             $table->integer('product_id')->unsigned();
             $table->integer('quantity')->unsigned();
             $table->string('note')->nullable();
+
+            $table->foreign('cargo_letter_id')->references('id')->on('cargo_letters');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

@@ -7,7 +7,7 @@
 <!-- customer Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('customer', 'Customer:') !!}
-    {!! Form::select('customer_id', $customers->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+    {!! Form::select('customer_id', $customers->pluck('name', 'customer_id'), null, ['class' => 'form-control']) !!}
 </div>
 
 <div id="product">
