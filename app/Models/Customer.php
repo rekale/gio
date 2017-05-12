@@ -13,10 +13,12 @@ class Customer extends Model
 {
 
     public $table = 'customers';
-    
+    public $incrementing = false;
+
 
 
     public $fillable = [
+        'id',
         'name'
     ];
 
@@ -35,8 +37,9 @@ class Customer extends Model
      * @var array
      */
     public static $rules = [
+        'id' => 'required|unique:customers',
         'name' => 'required|max:15'
     ];
 
-    
+
 }

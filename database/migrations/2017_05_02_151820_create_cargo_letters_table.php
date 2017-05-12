@@ -15,7 +15,7 @@ class CreateCargoLettersTable extends Migration
     {
         Schema::create('cargo_letters', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id')->unsigned();
+            $table->string('customer_id', 10);
             $table->integer('user_id')->unsigned();
             $table->string('license_plate', 10);
             $table->timestamps();
