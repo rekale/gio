@@ -32,9 +32,7 @@ Route::group(['namespace' => 'Front'], function() {
     //     'uses' => 'HomeController@index',
     // ]);
 
-    Route::get('/', function(){
-        return 'welcome';
-    });
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
