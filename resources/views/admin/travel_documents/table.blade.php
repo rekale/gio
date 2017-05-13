@@ -3,6 +3,8 @@
         <th>Cargo Letter Id</th>
         <th>Address</th>
         <th>Arrive At</th>
+        <th>Unloading At</th>
+        <th>Verified</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
@@ -11,6 +13,8 @@
             <td>{!! $travelDocument->cargo_letter_id !!}</td>
             <td>{!! $travelDocument->address !!}</td>
             <td>{!! $travelDocument->arrive_at !!}</td>
+            <td>{!! $travelDocument->unloading_at ?? '-' !!}</td>
+            <td>{{ isset($travelDocument->unloading_at) ? 'yes' : 'no' }}</td>
             <td>
                 {!! Form::open(['route' => ['admin.travelDocuments.destroy', $travelDocument->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
