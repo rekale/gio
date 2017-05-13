@@ -43,4 +43,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
     Route::resource('customers', 'CustomerController');
     Route::resource('cargoLetters', 'CargoLetterController');
     Route::resource('travelDocuments', 'TravelDocumentController');
+
+    Route::get('travel/verify', [
+        'as' => 'travel.verify',
+        'uses' => 'TravelVerifyController@index',
+    ]);
+    Route::post('travel/verify', [
+        'as' => 'travel.verify',
+        'uses' => 'TravelVerifyController@verify',
+    ]);
 });

@@ -20,12 +20,6 @@
     {!! Form::text('card_id', null, ['class' => 'form-control']) !!}
 </div>
 
-{{-- <!-- Unloading At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('unloading_at', 'Unloading At:') !!}
-    {!! Form::date('unloading_at', null, ['class' => 'form-control']) !!}
-</div> --}}
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

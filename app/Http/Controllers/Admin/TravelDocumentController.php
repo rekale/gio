@@ -144,7 +144,7 @@ class TravelDocumentController extends AppBaseController
         $travelDocument = $this->travelDocumentRepository->findWithoutFail($id);
 
         if (empty($travelDocument)) {
-            Flash::error('Travel Document not found');
+            Flash::danger('Travel Document not found');
 
             return redirect(route('admin.travelDocuments.index'));
         }
@@ -155,4 +155,5 @@ class TravelDocumentController extends AppBaseController
 
         return redirect(route('admin.travelDocuments.index'));
     }
+
 }

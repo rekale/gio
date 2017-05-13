@@ -30,7 +30,6 @@ class TravelDocument extends Model
      * @var array
      */
     protected $casts = [
-        'cargo_letter_id' => 'integer',
         'address' => 'string',
         'arrive_at' => 'datetime'
     ];
