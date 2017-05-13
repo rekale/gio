@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Product
@@ -13,9 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     public $table = 'products';
-
-
-    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

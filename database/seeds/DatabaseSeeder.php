@@ -8,12 +8,19 @@ class DatabaseSeeder extends Seeder
 
     protected $tables = [
         'users',
-        'destinations',
+        'categories',
+        'customers',
+        'products',
+        'travel_documents',
+        'cargo_letters',
     ];
 
 
     protected $seeds = [
-        DestinationSeeder::class,
+        UserSeeder::class,
+        ProductSeeder::class,
+        CustomerSeeder::class,
+        LetterSeeder::class,
     ];
     /**
      * Run the database seeds.
@@ -27,12 +34,6 @@ class DatabaseSeeder extends Seeder
         foreach ($this->tables as $table) {
             DB::table($table)->truncate();
         }
-
-        User::create([
-            'name' => 'admin',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('admin'),
-        ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 

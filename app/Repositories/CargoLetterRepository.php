@@ -55,6 +55,36 @@ class CargoLetterRepository extends BaseRepository
         return parent::create($attributes);
     }
 
+    public function attachProducts(CargoLetter $cargoLetter, $input)
+    {
+        $dataProducts = $this->createProduct($input);
+
+        $cargoLetter->products()->attach($dataProducts);
+    }
+
+    public function syncProducts(CargoLetter $cargoLetter, $input)
+    {
+        $dataProducts = $this->createProduct($input);
+
+        $cargoLetter->products()->sync($dataProducts);
+    }
+
+    private function createProduct($input)
+    {
+        $dataProducts = [];
+
+        for($i=0; $i < count($input['product_id']); $i++) {
+            if(isset($input['product_id'][$i])) {
+                $dataProducts[$input['product_id'][$i]] = [
+                    'quantity' => $input['quantity'][$i] ?? 0,
+                    'note' => $input['note'][$i] ?? null,
+                ];
+            }
+        }
+
+        return $dataProducts;
+    }
+
     public function createId($customerId)
     {
         $today = Carbon::now();

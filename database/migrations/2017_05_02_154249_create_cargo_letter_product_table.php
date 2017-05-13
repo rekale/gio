@@ -19,8 +19,8 @@ class CreateCargoLetterProductTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->string('note')->nullable();
 
-            $table->foreign('cargo_letter_id')->references('id')->on('cargo_letters');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('cargo_letter_id')->references('id')->on('cargo_letters')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

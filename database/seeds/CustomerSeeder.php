@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Destination;
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
-class DestinationSeeder extends Seeder
+class CustomerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class DestinationSeeder extends Seeder
      */
     public function run()
     {
-        factory(Destination::class, 50)->create();
+        factory(Customer::class, 10)->create();
     }
 }

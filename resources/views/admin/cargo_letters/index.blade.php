@@ -17,6 +17,7 @@
             <div class="box-body">
                     @include('admin.cargo_letters.table')
             </div>
+            {{ $cargoLetters->links() }}
         </div>
     </div>
 @endsection

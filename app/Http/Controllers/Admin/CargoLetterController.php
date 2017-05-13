@@ -38,6 +38,8 @@ class CargoLetterController extends AppBaseController
 
         $cargoLetters = $this->cargoLetterRepository->paginate(15);
 
+        debug($cargoLetters->toArray());
+
         return view('admin.cargo_letters.index')
             ->with('cargoLetters', $cargoLetters);
     }
@@ -68,9 +70,10 @@ class CargoLetterController extends AppBaseController
         $input['user_id'] = $request->user()->id;
 
         $cargoLetter = $this->cargoLetterRepository->create($input);
-        $dataProducts = $this->createProduct($input);
 
-        $cargoLetter->products()->attach($dataProducts);
+        if(isset($input['product_id'])) {
+            $this->cargoLetterRepository->attachProducts($cargoLetter, $input);
+        }
 
         Flash::success('Cargo Letter saved successfully.');
 
@@ -140,10 +143,7 @@ class CargoLetterController extends AppBaseController
 
         $input = $request->all();
 
-        $cargoLetter = $this->cargoLetterRepository->update($input, $id);
-        $dataProducts = $this->createProduct($input);
-
-        $cargoLetter->products()->sync($dataProducts);
+        $this->cargoLetterRepository->syncProducts($cargoLetter, $input);
 
         Flash::success('Cargo Letter updated successfully.');
 
@@ -174,19 +174,4 @@ class CargoLetterController extends AppBaseController
         return redirect(route('admin.cargoLetters.index'));
     }
 
-    private function createProduct($input)
-    {
-        $dataProducts = [];
-
-        for($i=0; $i < count($input['product_id']); $i++) {
-            if(isset($input['product_id'][$i])) {
-                $dataProducts[$input['product_id'][$i]] = [
-                    'quantity' => $input['quantity'][$i] ?? 0,
-                    'note' => $input['note'][$i],
-                ];
-            }
-        }
-
-        return $dataProducts;
-    }
 }

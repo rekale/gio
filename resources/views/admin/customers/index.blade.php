@@ -17,6 +17,7 @@
             <div class="box-body">
                     @include('admin.customers.table')
             </div>
+            {{ $customers->links() }}
         </div>
     </div>
 @endsection

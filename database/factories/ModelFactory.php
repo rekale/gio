@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\CargoLetter;
+use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Destination;
+use App\Models\Product;
+use App\Models\TravelDocument;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +27,48 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+
+$factory->define(Product::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'image' => $faker->imageUrl(),
+        'weight' => $faker->randomDigit,
+        'price' => $faker->randomNumber(),
+        'unit' => $faker->word,
+        'detail' => $faker->paragraph(),
+        'category_id' => 1,
+    ];
+});
+
+$factory->define(Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+    ];
+});
+
+
+$factory->define(Customer::class, function (Faker\Generator $faker) {
+    return [
+        'customer_id' => $faker->unique()->randomLetter,
+        'name' => $faker->name,
+    ];
+});
+
+
+$factory->define(CargoLetter::class, function (Faker\Generator $faker) {
+    return [
+        'license_plate' => $faker->bothify('? #### ???'),
+    ];
+});
+
+
+$factory->define(TravelDocument::class, function (Faker\Generator $faker) {
+    return [
+        'card_id' => $faker->uuid,
+        'address' => $faker->address,
+        'arrive_at' => $faker->dateTime(),
     ];
 });

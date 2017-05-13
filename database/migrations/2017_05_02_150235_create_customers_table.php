@@ -15,7 +15,7 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->string('customer_id', 10)->unique()->index();
-            $table->string('name', 15);
+            $table->string('name', 25);
             $table->timestamps();
         });
     }

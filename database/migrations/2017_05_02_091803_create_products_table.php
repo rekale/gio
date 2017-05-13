@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->float('weight');
             $table->integer('price')->unsigned();
-            $table->string('unit', 5);
+            $table->string('unit', 15);
             $table->text('detail');
             $table->timestamps();
 

@@ -17,6 +17,7 @@
             <div class="box-body">
                     @include('admin.categories.table')
             </div>
+            {{ $categories->links() }}
         </div>
     </div>
 @endsection

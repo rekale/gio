@@ -17,6 +17,7 @@
             <div class="box-body">
                     @include('admin.travel_documents.table')
             </div>
+            {{ $travelDocuments->links() }}
         </div>
     </div>
 @endsection

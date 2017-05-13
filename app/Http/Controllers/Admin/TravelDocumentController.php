@@ -94,9 +94,10 @@ class TravelDocumentController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, CargoLetterRepository $cargoRepo)
     {
         $travelDocument = $this->travelDocumentRepository->findWithoutFail($id);
+        $cargoes = $cargoRepo->pluck('id', 'id');
 
         if (empty($travelDocument)) {
             Flash::error('Travel Document not found');
@@ -104,7 +105,7 @@ class TravelDocumentController extends AppBaseController
             return redirect(route('admin.travelDocuments.index'));
         }
 
-        return view('admin.travel_documents.edit')->with('travelDocument', $travelDocument);
+        return view('admin.travel_documents.edit', compact('travelDocument', 'cargoes'));
     }
 
     /**
