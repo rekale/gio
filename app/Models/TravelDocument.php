@@ -13,13 +13,15 @@ class TravelDocument extends Model
 {
 
     public $table = 'travel_documents';
-    
+
 
 
     public $fillable = [
         'cargo_letter_id',
+        'card_id',
         'address',
-        'arrive_at'
+        'arrive_at',
+        'unloading_at',
     ];
 
     /**
@@ -39,10 +41,11 @@ class TravelDocument extends Model
      * @var array
      */
     public static $rules = [
-        'cargo_letter_id' => 'required|integer',
+        'cargo_letter_id' => 'required',
+        'card_id' => 'required|unique:travel_documents',
         'address' => 'required|string|max:255',
-        'arrive_at' => 'unloading_at dateTime date'
+        'arrive_at' => 'date|required',
     ];
 
-    
+
 }

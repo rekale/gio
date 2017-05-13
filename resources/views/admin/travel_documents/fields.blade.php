@@ -10,11 +10,21 @@
     {!! Form::date('arrive_at', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Unloading At Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('address', 'Address:') !!}
+    {!! Form::text('address', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('card_id', 'Card Id:') !!}
+    {!! Form::text('card_id', null, ['class' => 'form-control']) !!}
+</div>
+
+{{-- <!-- Unloading At Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('unloading_at', 'Unloading At:') !!}
     {!! Form::date('unloading_at', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
