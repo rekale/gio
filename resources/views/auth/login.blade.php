@@ -65,7 +65,7 @@
 
             </div>
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-7 col-xs-offset-1">
                     <div class="checkbox icheck">
                         <label>
                             <input type="checkbox" name="remember"> Remember Me
@@ -92,13 +92,13 @@
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
 <script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
+    // $(function () {
+    //     $('input').iCheck({
+    //         checkboxClass: 'icheckbox_square-blue',
+    //         radioClass: 'iradio_square-blue',
+    //         increaseArea: '20%' // optional
+    //     });
+    // });
 </script>
 </body>
 </html>
