@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\TravelDocument;
 use App\User;
 use Eloquent as Model;
 
@@ -60,6 +61,11 @@ class CargoLetter extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function travelDocument()
+    {
+        return $this->hasMany(TravelDocument::class);
     }
 
 }

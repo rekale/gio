@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Criteria\DoesntHaveCriteria;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateTravelDocumentRequest;
 use App\Http\Requests\UpdateTravelDocumentRequest;
@@ -44,7 +45,8 @@ class TravelDocumentController extends AppBaseController
      */
     public function create(CargoLetterRepository $cargoRepo)
     {
-        $cargoes = $cargoRepo->pluck('id', 'id');
+        $cargoes = $cargoRepo->pushCriteria(new DoesntHaveCriteria('travelDocument'))
+                             ->pluck('id', 'id');
 
         return view('admin.travel_documents.create', compact('cargoes'));
     }
