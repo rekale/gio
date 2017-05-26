@@ -32,7 +32,7 @@ class CargoLetterController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->cargoLetterRepository->with(['customer', 'user'])
+        $this->cargoLetterRepository->with(['customer', 'user', 'travelDocument'])
                                     ->pushCriteria(new RequestCriteria($request))
                                     ->pushCriteria(LatestCriteria::class);
 
@@ -110,6 +110,11 @@ class CargoLetterController extends AppBaseController
     public function edit($id, CustomerRepository $customerRepo, ProductRepository $productRepo)
     {
         $cargoLetter = $this->cargoLetterRepository->findWithoutFail($id);
+
+        if(isset($cargoLetter->travelDocument)) {
+            Flash::error('Cargo Letter can not edit');
+            return redirect()->back();
+        }
 
         if (empty($cargoLetter)) {
             Flash::error('Cargo Letter not found');

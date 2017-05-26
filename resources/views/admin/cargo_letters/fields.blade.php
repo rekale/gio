@@ -10,38 +10,46 @@
     {!! Form::select('customer_id', $customers->pluck('name', 'customer_id'), null, ['class' => 'form-control']) !!}
 </div>
 
-<div id="product">
-    @if(isset($cargoLetter))
+<div class="form-group col-sm-12">
+    <button class="btn btn-primary" type="button" onclick="add()">
+        Add Product
+    </button>
+    <table class="table table-responsive" id="travelDocuments-table">
+    <thead>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Note</th>
+    </thead>
+    <tbody id="product">
+        @if(isset($cargoLetter))
         @php
             $diffProducts = $cargoLetter->products->diff($products);
         @endphp
 
         @foreach($cargoLetter->products as $cargoProduct)
-
-            <div class="form-group col-sm-4">
-                <select name="product_id[]" class="form-control">
-                    <option></option>
-                        @foreach($products as $product)
-                            <option value="{{ $product->id }}" {{ $product->id ===  $cargoProduct->id ? 'selected':''}}>
-                                {{ $product->name }}
-                            </option>
-                        @endforeach
-                </select>
-            </div>
-             <div class="form-group col-sm-4">
-                <input type="number" name="quantity[]" placeholder="qty" class="form-control" value="{{ $cargoProduct->pivot->quantity }}">
-            </div>
-            <div class="form-group col-sm-4">
-                <input type="text" name="note[]" placeholder="note" class="form-control" value="{{ $cargoProduct->pivot->note }}">
-            </div>
+            <tr>
+                <td>
+                    <select name="product_id[]" class="form-control">
+                        <option></option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}" {{ $product->id ===  $cargoProduct->id ? 'selected':''}}>
+                                    {{ $product->name }}
+                                </option>
+                            @endforeach
+                    </select>
+                </td>
+                 <td>
+                    <input type="number" name="quantity[]" placeholder="qty" class="form-control" value="{{ $cargoProduct->pivot->quantity }}">
+                </td>
+                <td>
+                    <input type="text" name="note[]" placeholder="note" class="form-control" value="{{ $cargoProduct->pivot->note }}">
+                </td>
+            </tr>
         @endforeach
     @endif
-</div>
+    </tbody>
+</table>
 
-<div class="form-group col-sm-12">
-    <button class="btn btn-primary" type="button" onclick="add()">
-        Add Product
-    </button>
 </div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -50,8 +58,8 @@
 </div>
 
 <template id="productform">
-    <div>
-        <div class="form-group col-sm-4">
+    <tr>
+        <td>
             <select name="product_id[]" class="form-control">
                 <option></option>
                 @if(isset($cargoLetter))
@@ -67,14 +75,14 @@
                     @endforeach
                 @endif
             </select>
-        </div>
-        <div class="form-group col-sm-4">
+        </td>
+        <td>
             <input type="number" name="quantity[]" placeholder="qty" class="form-control">
-        </div>
-        <div class="form-group col-sm-4">
+        </td>
+        <td>
             <input type="text" name="note[]" placeholder="note" class="form-control">
-        </div>
-    </div>
+        </td>
+    </tr>
 </template>
 
 @section('scripts')

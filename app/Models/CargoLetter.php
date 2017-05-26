@@ -65,7 +65,7 @@ class CargoLetter extends Model
 
     public function travelDocument()
     {
-        return $this->hasMany(TravelDocument::class);
+        return $this->hasOne(TravelDocument::class);
     }
 
 }
