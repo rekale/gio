@@ -16,7 +16,7 @@
 
                         <div class="form-group col-sm-4 col-md-offset-4">
                             {!! Form::label('card_id', 'Tap your card:') !!}
-                            {!! Form::text('card_id', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('card_id', null, ['class' => 'form-control', 'autofocus']) !!}
                         </div>
 
                         <!-- Submit Field -->
