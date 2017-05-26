@@ -19,6 +19,9 @@
                 {!! Form::open(['route' => ['admin.travelDocuments.destroy', $travelDocument->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('admin.travelDocuments.show', [$travelDocument->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    @if(isset($travelDocument->unloading_at))
+                        <a href="{!! route('admin.sales-invoices.show', [$travelDocument->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-book"></i></a>
+                    @endif
                     <a href="{!! route('admin.travelDocuments.edit', [$travelDocument->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>

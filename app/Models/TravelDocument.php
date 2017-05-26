@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CargoLetter;
 use Eloquent as Model;
 
 /**
@@ -31,8 +32,10 @@ class TravelDocument extends Model
      */
     protected $casts = [
         'address' => 'string',
-        'arrive_at' => 'datetime'
+        'arrive_at' => 'datetime',
     ];
+
+    protected $dates = ['unloading_at'];
 
     /**
      * Validation rules
@@ -46,5 +49,9 @@ class TravelDocument extends Model
         'arrive_at' => 'date|required',
     ];
 
+    public function cargoLetter()
+    {
+        return $this->belongsTo(CargoLetter::class, 'cargo_letter_id');
+    }
 
 }

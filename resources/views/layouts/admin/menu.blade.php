@@ -22,3 +22,7 @@
     <a href="{!! route('admin.travel.verify') !!}"><i class="fa fa-edit"></i><span>Travel Verify</span></a>
 </li>
 
+<li class="{{ Request::is('sales-invoices*') ? 'active' : '' }}">
+    <a href="{!! route('admin.sales-invoices.index') !!}"><i class="fa fa-edit"></i><span>Sales Invoice</span></a>
+</li>
+
