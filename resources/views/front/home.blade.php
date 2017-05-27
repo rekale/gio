@@ -15,37 +15,35 @@
 
         <div class="col-md-9">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                @foreach($productRandoms as $product)
-                    <li data-target="#carousel-example-generic"
-                    data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active':'' }}">
-                    </li>
-                @endforeach
-              </ol>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              @foreach($productRandoms as $product)
+                <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active':'' }}"></li>
+              @endforeach
+            </ol>
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                @foreach($productRandoms as $product)
-                    <div class="item {{ $loop->first ? 'active':'' }}">
-                      <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                      <div class="carousel-caption">
-                        {{ $product->detail }}
-                      </div>
-                    </div>
-                @endforeach
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              @foreach($productRandoms as $product)
+              <div class="item {{ $loop->first ? 'active':'' }}" style="background-image: url({{ $product->image }});">
+                <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                <div class="carousel-caption">
+                  {{ $product->detail }}
+                </div>
               </div>
-
-              <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+              @endforeach
             </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
             <br>
 
             @foreach($products->chunk(4) as $productChunks)
