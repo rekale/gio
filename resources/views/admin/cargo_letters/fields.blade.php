@@ -11,45 +11,47 @@
 </div>
 
 <div class="form-group col-sm-12">
+    <table class="table table-responsive" id="travelDocuments-table">
+        <thead>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Note</th>
+            <th>Delete</th>
+        </thead>
+        <tbody id="product">
+            @if(isset($cargoLetter))
+
+            @foreach($cargoLetter->products as $cargoProduct)
+                <tr>
+                    <td>
+                        <select name="product_id[]" class="form-control">
+                            <option></option>
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}" {{ $product->id ===  $cargoProduct->id ? 'selected':''}}>
+                                        {{ $product->name }}
+                                    </option>
+                                @endforeach
+                        </select>
+                    </td>
+                     <td>
+                        <input type="number" name="quantity[]" placeholder="qty" class="form-control" value="{{ $cargoProduct->pivot->quantity }}">
+                    </td>
+                    <td>
+                        <input type="text" name="note[]" placeholder="note" class="form-control" value="{{ $cargoProduct->pivot->note }}">
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="event.preventDefault();$(this).parents('tr').remove()">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
+        </tbody>
+    </table>
     <button class="btn btn-primary" type="button" onclick="add()">
         Add Product
     </button>
-    <table class="table table-responsive" id="travelDocuments-table">
-    <thead>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Note</th>
-    </thead>
-    <tbody id="product">
-        @if(isset($cargoLetter))
-        @php
-            $diffProducts = $cargoLetter->products->diff($products);
-        @endphp
-
-        @foreach($cargoLetter->products as $cargoProduct)
-            <tr>
-                <td>
-                    <select name="product_id[]" class="form-control">
-                        <option></option>
-                            @foreach($products as $product)
-                                <option value="{{ $product->id }}" {{ $product->id ===  $cargoProduct->id ? 'selected':''}}>
-                                    {{ $product->name }}
-                                </option>
-                            @endforeach
-                    </select>
-                </td>
-                 <td>
-                    <input type="number" name="quantity[]" placeholder="qty" class="form-control" value="{{ $cargoProduct->pivot->quantity }}">
-                </td>
-                <td>
-                    <input type="text" name="note[]" placeholder="note" class="form-control" value="{{ $cargoProduct->pivot->note }}">
-                </td>
-            </tr>
-        @endforeach
-    @endif
-    </tbody>
-</table>
-
 </div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -81,6 +83,11 @@
         </td>
         <td>
             <input type="text" name="note[]" placeholder="note" class="form-control">
+        </td>
+        <td>
+            <button class="btn btn-danger" onclick="event.preventDefault();$(this).parents('tr').remove()">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
         </td>
     </tr>
 </template>
