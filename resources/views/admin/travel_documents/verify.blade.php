@@ -8,6 +8,7 @@
     </section>
     <div class="content">
         @include('flash::message')
+        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
 
             <div class="box-body">
@@ -30,4 +31,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $('.alert-danger').show().delay(2000).fadeOut();
+    </script>
 @endsection

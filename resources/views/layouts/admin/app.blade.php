@@ -146,7 +146,9 @@
 
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
-
+    <script type="text/javascript">
+        $('.alert-success').show().delay(2000).fadeOut();
+    </script>
     @yield('scripts')
 </body>
 </html>

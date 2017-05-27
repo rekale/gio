@@ -39,8 +39,11 @@ class TravelVerifyController extends AppBaseController
      */
     public function verify(Request $request)
     {
-        $input = $request->all();
+        $this->validate($request, [
+            'card_id' => 'required|max:255',
+        ]);
 
+        $input = $request->all();
 
         $travel = $this->travelDocumentRepository->findWhere(['card_id' => $input['card_id']])->first();
 

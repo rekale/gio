@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Criteria\DoesntHaveCriteria;
+use App\Criteria\LatestCriteria;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateTravelDocumentRequest;
 use App\Http\Requests\UpdateTravelDocumentRequest;
@@ -31,7 +32,9 @@ class TravelDocumentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->travelDocumentRepository->pushCriteria(new RequestCriteria($request));
+        $this->travelDocumentRepository->pushCriteria(new RequestCriteria($request))
+                                       ->pushCriteria(LatestCriteria::class);
+
         $travelDocuments = $this->travelDocumentRepository->paginate(15);
 
         return view('admin.travel_documents.index')
