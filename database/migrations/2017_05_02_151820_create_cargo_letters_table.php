@@ -16,12 +16,12 @@ class CreateCargoLettersTable extends Migration
         Schema::create('cargo_letters', function (Blueprint $table) {
             $table->string('id', 12)->unique();
             $table->string('customer_id', 10);
-            $table->integer('user_id')->unsigned();
+            $table->integer('admin_id')->unsigned();
             $table->string('license_plate', 10);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('customer_id')->on('customers');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('admin_id')->references('id')->on('admins');
         });
     }
 

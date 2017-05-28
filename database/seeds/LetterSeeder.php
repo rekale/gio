@@ -5,7 +5,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\TravelDocument;
 use App\Repositories\CargoLetterRepository;
-use App\User;
+use App\Admin;
 use Illuminate\Database\Seeder;
 
 class LetterSeeder extends Seeder
@@ -18,14 +18,14 @@ class LetterSeeder extends Seeder
     public function run()
     {
         $customers = Customer::all();
-        $users = User::all();
+        $admins = Admin::all();
         $repo = app(CargoLetterRepository::class);
         $products = Product::all();
 
-        $cargoLetters = factory(CargoLetter::class, 20)->make()->each(function ($cargo)  use ($customers, $users, $repo, $products) {
+        $cargoLetters = factory(CargoLetter::class, 20)->make()->each(function ($cargo)  use ($customers, $admins, $repo, $products) {
             $cargo->customer_id = $customers->random()->customer_id;
             $cargo->id = $repo->createId($cargo->customer_id);
-            $cargo->user_id = $users->random()->id;
+            $cargo->admin_id = $admins->random()->id;
 
             $cargo->save();
 

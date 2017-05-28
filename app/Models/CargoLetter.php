@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\TravelDocument;
-use App\User;
+use App\Admin;
 use Eloquent as Model;
 
 /**
@@ -55,7 +55,7 @@ class CargoLetter extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class, 'admin_id');
     }
 
     public function customer()

@@ -1,13 +1,12 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
 
     protected $tables = [
-        'users',
+        'admins',
         'categories',
         'customers',
         'products',
@@ -17,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
 
     protected $seeds = [
-        UserSeeder::class,
+        AdminSeeder::class,
         ProductSeeder::class,
         CustomerSeeder::class,
         LetterSeeder::class,

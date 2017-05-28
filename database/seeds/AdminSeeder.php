@@ -1,9 +1,9 @@
 <?php
 
-use App\User;
+use App\Admin;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,12 +12,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        Admin::create([
             'name' => 'admin',
             'email' => 'admin@test.com',
             'password' => bcrypt('123123'),
         ]);
 
-        factory(User::class, 10)->create();
+        factory(Admin::class, 10)->create();
     }
 }
