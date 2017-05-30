@@ -67,7 +67,7 @@ class CargoLetterController extends AppBaseController
     public function store(CreateCargoLetterRequest $request)
     {
         $input = $request->all();
-        $input['user_id'] = $request->user()->id;
+        $input['admin_id'] = $request->user()->id;
 
         $cargoLetter = $this->cargoLetterRepository->create($input);
 

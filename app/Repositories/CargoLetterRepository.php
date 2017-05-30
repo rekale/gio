@@ -14,7 +14,7 @@ class CargoLetterRepository extends BaseRepository
     protected $fieldSearchable = [
         'license_plate',
         'customer_id',
-        'user_id'
+        'admin_id'
     ];
 
     const MONTH = [
@@ -76,8 +76,8 @@ class CargoLetterRepository extends BaseRepository
         for($i=0; $i < count($input['product_id']); $i++) {
             if(isset($input['product_id'][$i])) {
                 $dataProducts[$input['product_id'][$i]] = [
-                    'quantity' => $input['quantity'][$i] ?? 0,
-                    'note' => $input['note'][$i] ?? null,
+                    'quantity' => isset($input['quantity'][$i]) ? $input['quantity'][$i] :0,
+                    'note' => isset($input['note'][$i]) ? $input['note'][$i] : null,
                 ];
             }
         }

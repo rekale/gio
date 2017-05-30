@@ -13,7 +13,7 @@
             <td>{!! $travelDocument->cargo_letter_id !!}</td>
             <td>{!! $travelDocument->address !!}</td>
             <td>{!! $travelDocument->arrive_at !!}</td>
-            <td>{!! $travelDocument->unloading_at ?? '-' !!}</td>
+            <td>{!! isset($travelDocument->unloading_at) ? $travelDocument->unloading_at : '-' !!}</td>
             <td>{{ isset($travelDocument->unloading_at) ? 'yes' : 'no' }}</td>
             <td>
                 {!! Form::open(['route' => ['admin.travelDocuments.destroy', $travelDocument->id], 'method' => 'delete']) !!}

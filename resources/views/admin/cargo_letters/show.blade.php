@@ -30,7 +30,7 @@
                                             {{ $cargoProduct->pivot->quantity }}
                                         </td>
                                         <td>
-                                            {{ $cargoProduct->pivot->note ?? '-' }}
+                                            {{ isset($cargoProduct->pivot->note) ? $cargoProduct->pivot->note : '-' }}
                                         </td>
                                     </tr>
                                 @endforeach

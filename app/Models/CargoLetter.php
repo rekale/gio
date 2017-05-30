@@ -24,7 +24,7 @@ class CargoLetter extends Model
         'id',
         'license_plate',
         'customer_id',
-        'user_id'
+        'admin_id'
     ];
 
     /**
@@ -34,7 +34,7 @@ class CargoLetter extends Model
      */
     protected $casts = [
         'license_plate' => 'string',
-        'user_id' => 'integer'
+        'admin_id' => 'integer'
     ];
 
     /**
