@@ -2,11 +2,18 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+         <div class="user-panel">
 
-        <!-- Sidebar user panel (optional) -->
+        @if (Auth::guest())
+            <p>Admin</p>
+        @else
+            <p style="color: white">{{ Auth::user()->name}}</p>
+        @endif
+        </div>
+        {{-- <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
+                <img src="{{ Auth::user()->gravatar() }}" class="img-circle"
                      alt="User Image"/>
             </div>
             <div class="pull-left info">
@@ -18,7 +25,7 @@
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
-        </div>
+        </div> --}}
 
         <!-- search form (Optional) -->
         {{-- <form action="#" method="get" class="sidebar-form">

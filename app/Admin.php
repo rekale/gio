@@ -26,4 +26,12 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function gravatar()
+    {
+        $email = $this->email;
+        $size = 40;
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) )  . "&s=" . $size;
+
+    }
 }
