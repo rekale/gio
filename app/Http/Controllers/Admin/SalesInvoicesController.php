@@ -19,7 +19,7 @@ class SalesInvoicesController extends Controller
     public function show($id)
     {
         $doc = $this->docRepo->with(['cargoLetter.products'])->find($id);
-        [$cargo, $products] = [$doc->cargoLetter, $doc->cargoLetter->products];
+        list($cargo, $products) = [$doc->cargoLetter, $doc->cargoLetter->products];
 
         return view('admin.sales_invoices.show', compact('doc', 'cargo', 'products'));
     }
