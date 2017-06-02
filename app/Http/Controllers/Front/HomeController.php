@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $productRepo->pushCriteria(LatestCriteria::class);
+        $this->productRepo->pushCriteria(LatestCriteria::class);
 
         $products = $this->productRepo->paginate();
         $categories = $this->catRepo->all();
