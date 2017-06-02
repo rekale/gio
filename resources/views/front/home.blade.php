@@ -8,12 +8,13 @@
             <hr>
             <ul class="list-group">
               @foreach($categories as $category)
-                <li class="list-group-item">{{ $category->name }}</li>
+                <a class="list-group-item  {{Request::input('category') == $category->name ? 'active' : ''}}" href="{{ route('home.products', ['category' => $category->name]) }}">{{ $category->name }}</a>
               @endforeach
             </ul>
         </div>
 
         <div class="col-md-9">
+
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -55,7 +56,7 @@
                               <div class="caption">
                                 <h4>{{ $product->name }}</h4>
                                 <p>Rp. {{ $product->price }}</p>
-                                <p><a href="#" class="btn btn-primary" role="button">More</a></p>
+                                <p><a href="{{ route('home.products.detail', ['id' => $Product->id]) }}" class="btn btn-primary" role="button">More</a></p>
                               </div>
                             </div>
                         </div>

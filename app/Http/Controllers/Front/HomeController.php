@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Criteria\CategoryCriteria;
 use App\Criteria\LatestCriteria;
 use App\Criteria\LimitCriteria;
 use App\Criteria\RandomCriteria;
@@ -13,6 +14,14 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
+    private $productRepo;
+    private $catRepo;
+
+    public function __construct(ProductRepository $productRepo, CategoryRepository $catRepo)
+    {
+        $this->productRepo = $productRepo;
+        $this->catRepo = $catRepo;
+    }
     /**
      * Show the application dashboard.
      *
@@ -22,13 +31,33 @@ class HomeController extends Controller
     {
         $productRepo->pushCriteria(LatestCriteria::class);
 
-        $products = $productRepo->paginate();
-        $categories = $catRepo->all();
+        $products = $this->productRepo->paginate();
+        $categories = $this->catRepo->all();
         $productRandoms = $productRepo->pushCriteria(RandomCriteria::class)
                                     ->pushCriteria(new LimitCriteria(3))
                                     ->all();
 
         return view('front.home', compact('products', 'productRandoms', 'categories'));
+    }
+
+    public function products(Request $req, ProductRepository $productRepo)
+    {
+        $category = $req->input('category');
+
+        $productRepo->pushCriteria(LatestCriteria::class)
+                    ->pushCriteria(new CategoryCriteria($category));
+
+        $products = $this->productRepo->paginate();
+        $categories = $this->catRepo->all();
+
+        return view('front.products', compact('products', 'categories'));
+    }
+
+    public function show($id)
+    {
+        $products = $this->productRepo->find($id);
+
+        return view('front.show', compact('products'));
     }
 
 }
