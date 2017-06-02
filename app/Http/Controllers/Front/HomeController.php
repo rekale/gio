@@ -55,9 +55,9 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $products = $this->productRepo->find($id);
+        $product = $this->productRepo->find($id);
 
-        return view('front.show', compact('products'));
+        return view('front.show', compact('product'));
     }
 
 }

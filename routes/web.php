@@ -29,7 +29,7 @@ Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\Re
 Route::group(['namespace' => 'Front'], function() {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/products', ['as' => 'home.products', 'uses' => 'HomeController@products']);
-    Route::get('/products/{id}', ['as' => 'home.products.detail', 'uses' => 'HomeController@products']);
+    Route::get('/products/{id}', ['as' => 'home.products.detail', 'uses' => 'HomeController@show']);
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
