@@ -56,7 +56,7 @@
                               <div class="caption">
                                 <h4>{{ $product->name }}</h4>
                                 <p>Rp. {{ $product->price }}</p>
-                                <p><a href="{{ route('home.products.detail', ['id' => $Product->id]) }}" class="btn btn-primary" role="button">More</a></p>
+                                <p><a href="{{ route('home.products.detail', ['id' => $product->id]) }}" class="btn btn-primary" role="button">More</a></p>
                               </div>
                             </div>
                         </div>
