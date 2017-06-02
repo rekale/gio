@@ -27,24 +27,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductRepository $productRepo, CategoryRepository $catRepo)
+    public function index()
     {
         $productRepo->pushCriteria(LatestCriteria::class);
 
         $products = $this->productRepo->paginate();
         $categories = $this->catRepo->all();
-        $productRandoms = $productRepo->pushCriteria(RandomCriteria::class)
+        $productRandoms = $this->productRepo->pushCriteria(RandomCriteria::class)
                                     ->pushCriteria(new LimitCriteria(3))
                                     ->all();
 
         return view('front.home', compact('products', 'productRandoms', 'categories'));
     }
 
-    public function products(Request $req, ProductRepository $productRepo)
+    public function products(Request $req)
     {
         $category = $req->input('category');
 
-        $productRepo->pushCriteria(LatestCriteria::class)
+        $this->productRepo->pushCriteria(LatestCriteria::class)
                     ->pushCriteria(new CategoryCriteria($category));
 
         $products = $this->productRepo->paginate();

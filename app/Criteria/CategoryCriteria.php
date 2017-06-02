@@ -30,6 +30,6 @@ class CategoryCriteria implements CriteriaInterface
     {
         $catId = Category::whereName($this->name)->first()->id;
 
-        return $model->where('name', '=', $catId);
+        return $model->where('category_id', '=', $catId);
     }
 }
