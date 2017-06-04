@@ -115,7 +115,7 @@ class CustomerController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateCustomerRequest $request)
+    public function update($id, Request $request)
     {
         $customer = $this->customerRepository->findWithoutFail($id);
 
