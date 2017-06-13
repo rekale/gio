@@ -38,8 +38,6 @@ class CargoLetterController extends AppBaseController
 
         $cargoLetters = $this->cargoLetterRepository->paginate(15);
 
-        debug($cargoLetters->toArray());
-
         return view('admin.cargo_letters.index')
             ->with('cargoLetters', $cargoLetters);
     }
