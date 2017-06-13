@@ -22,7 +22,7 @@ class CreateTravelDocumentsTable extends Migration
             $table->dateTime('unloading_at')->nullable();
             $table->timestamps();
 
-            $table->foreign('cargo_letter_id')->references('id')->on('cargo_letters');
+            $table->foreign('cargo_letter_id')->references('id')->on('cargo_letters')->onDelete('cascade');
         });
     }
 

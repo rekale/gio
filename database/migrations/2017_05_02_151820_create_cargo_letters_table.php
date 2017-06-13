@@ -20,8 +20,8 @@ class CreateCargoLettersTable extends Migration
             $table->string('license_plate', 10);
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('customer_id')->on('customers');
-            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 
