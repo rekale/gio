@@ -92,9 +92,11 @@ class CargoLetterRepository extends BaseRepository
 
         $session  = session();
 
-        $id = $session->exists($yearMonth) ? $session->get($yearMonth) + 1 : 1;
-        $session->put($yearMonth, $id);
+        $unique = $customerId . '-' . $yearMonth;
 
-        return $customerId . '-' . $yearMonth. '-' . str_pad($id, 5, 0, STR_PAD_LEFT);
+        $id = $session->exists($unique) ? $session->get($unique) + 1 : 1;
+        $session->put($unique, $id);
+
+        return $unique . '-' . str_pad($id, 5, 0, STR_PAD_LEFT);
     }
 }
